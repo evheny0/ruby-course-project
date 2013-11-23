@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  value: MyString
+  ammount: 1
+  creative_id: 
+
+two:
+  value: MyString
+  ammount: 1
+  creative_id: 

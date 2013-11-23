@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @creative.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @creative.description %>
+</p>
+
+<p>
+  <strong>Votes:</strong>
+  <%= @creative.votes %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @creative.user %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <%= @creative.tags %>
+</p>
+
+<p>
+  <strong>Chapters:</strong>
+  <%= @creative.chapters %>
+</p>
+
+<%= link_to 'Edit', edit_creative_path(@creative) %> |
+<%= link_to 'Back', creatives_path %>

@@ -18,6 +18,9 @@
 <ul>
     <% @users.each do |user| %>
         <li>
+            <%= user.id %>
+        </li>
+        <li>
             <%= user.email %>
         </li>
         <li>
@@ -26,3 +29,4 @@
         <hr/>
     <% end %>
 </ul>
+<%= t(:hello) %>

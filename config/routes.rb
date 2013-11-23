@@ -1,5 +1,7 @@
 RubyCourseProject::Application.routes.draw do
 
+  resources :creatives
+
   get "home/index"
 
   devise_for :users

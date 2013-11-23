@@ -11,7 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131122212928) do
+ActiveRecord::Schema.define(version: 20131123233110) do
+
+  create_table "chapters", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "order"
+    t.integer  "creative_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "creatives", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "votes"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "creatives_tags", id: false, force: true do |t|
+    t.integer "creative_id"
+    t.integer "tag_id"
+  end
+
+  add_index "creatives_tags", ["creative_id", "tag_id"], name: "index_creatives_tags_on_creative_id_and_tag_id"
+
+  create_table "tags", force: true do |t|
+    t.string   "value"
+    t.integer  "ammount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -31,5 +63,6 @@ ActiveRecord::Schema.define(version: 20131122212928) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end

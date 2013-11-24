@@ -21,9 +21,18 @@
         <td><%= creative.title %></td>
         <td><%= creative.description %></td>
         <td><%= creative.votes %></td>
-        <td><%= creative.user %></td>
-        <td><%= creative.tags %></td>
-        <td><%= creative.chapters %></td>
+        <td><%= creative.user.username %></td>
+        <td>
+            <% creative.tags.each do |tag| %>
+              <li><%= tag.value %></li>
+            <% end %>
+        </td>
+        <td>
+            <% creative.chapters.each do |chapter| %>
+              <li><%= chapter.title %></li>
+              <li><%= chapter.content %></li>
+            <% end %>
+        </td>
         <td><%= link_to 'Show', creative %></td>
         <td><%= link_to 'Edit', edit_creative_path(creative) %></td>
         <td><%= link_to 'Destroy', creative, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -35,3 +44,4 @@
 <br>
 
 <%= link_to 'New Creative', new_creative_path %>
+<%= current_user.id %>

@@ -24,7 +24,7 @@ class CreativesController < ApplicationController
   # POST /creatives
   # POST /creatives.json
   def create
-    @creative = Creative.new(creative_params)
+    @creative = Creative.new({ :user_id => current_user.id , :votes => 0 }.merge(creative_params))
 
     respond_to do |format|
       if @creative.save
@@ -69,6 +69,6 @@ class CreativesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def creative_params
-      params.require(:creative).permit(:title, :description, :votes, :user_id, :tags_id, :chapters_id)
+      params.require(:creative).permit(:title, :description)
     end
 end

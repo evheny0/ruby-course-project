@@ -1,46 +1,7 @@
-<h1>Listing creatives</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Votes</th>
-      <th>User</th>
-      <th>Tags</th>
-      <th>Chapters</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @creatives.each do |creative| %>
-      <tr>
-        <td><%= creative.title %></td>
-        <td><%= creative.description %></td>
-        <td><%= creative.votes %></td>
-        <td><%= creative.user.username %></td>
-        <td>
-            <% creative.tags.each do |tag| %>
-              <li><%= tag.value %></li>
-            <% end %>
-        </td>
-        <td>
-            <% creative.chapters.each do |chapter| %>
-              <li><%= chapter.title %></li>
-              <li><%= chapter.content %></li>
-            <% end %>
-        </td>
-        <td><%= link_to 'Show', creative %></td>
-        <td><%= link_to 'Edit', edit_creative_path(creative) %></td>
-        <td><%= link_to 'Destroy', creative, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<div class="page-header">
+    <h1>Listing creatives</h1>
+</div>
 
 <%= link_to 'New Creative', new_creative_path %>
+
+<%= render "shared/creatives" %>

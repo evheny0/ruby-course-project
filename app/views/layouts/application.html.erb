@@ -7,8 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <td><%= link_to 'Cource Project', root_path, :class => "navbar-brand" %></td>
@@ -22,11 +21,14 @@
             </div>
         </form>
         </ul>
-        <%= render "shared/login_menu" %>
+        <ul class="nav navbar-nav pull-right">
+            <%= render "shared/login_menu" %>
+        </ul>
     </div>
 </nav>
 
+<div class="container">
 <%= yield %>
-
+</div>
 </body>
 </html>

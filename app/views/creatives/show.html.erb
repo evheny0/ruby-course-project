@@ -29,6 +29,6 @@
   <strong>Chapters:</strong>
   <%= @creative.chapters %>
 </p>
-
+<%= link_to 'Destroy', @creative, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Edit', edit_creative_path(@creative) %> |
 <%= link_to 'Back', creatives_path %>

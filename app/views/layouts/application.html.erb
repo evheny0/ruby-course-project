@@ -8,6 +8,24 @@
 </head>
 <body>
 
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <td><%= link_to 'Cource Project', root_path, :class => "navbar-brand" %></td>
+        </div>
+        <ul class="nav navbar-nav">
+        <li><%= link_to 'Creatives', creatives_path %></li>
+
+        <form action=<%= url_for root_path %> method="GET" class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search..." name="text">
+            </div>
+        </form>
+        </ul>
+        <%= render "shared/login_menu" %>
+    </div>
+</nav>
+
 <%= yield %>
 
 </body>

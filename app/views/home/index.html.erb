@@ -1,32 +1,46 @@
-<% if user_signed_in? %>
 
-    <h3>
-        You have signed in as
-        <%= current_user.email %>
-        <%= current_user.username %>
-    </h3>
-    <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-    
-<% else %>
-    
-    <h1>Welcome</h1>
-    <%= link_to "Sign In", new_user_session_path, :method => :get %>
-    <%= link_to "Register", new_user_registration_path, :method => :get %>
-    
-<% end %>
+<div class="alert alert-dismissable alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <%= notice %>
+</div>
 
-<ul>
-    <% @users.each do |user| %>
-        <li>
-            <%= user.id %>
-        </li>
-        <li>
-            <%= user.email %>
-        </li>
-        <li>
-            <%= user.username %>
-        </li>
-        <hr/>
-    <% end %>
-</ul>
-<%= t(:hello) %>
+<div class="col-lg-4 pull-right">
+    <div class="page-header">
+        <h1><%= t("root.tags_cloud") %></h1>
+    </div>
+
+    <ul class="nav nav-pills">
+        <% @tags.each do |tag| %>
+            <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-tag"></span>
+                    <%= tag.value %>
+                </a>
+            </li>
+        <% end %>
+    </ul>
+
+    <div class="page-header">
+        <h1><%= t("root.pop_users") %></h1>
+    </div>
+
+    <ul class="nav nav-pills">
+        <% @users.each do |user| %>
+            <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <%= user.username %>
+                </a>
+            </li>
+        <% end %>
+    </ul>
+</div>
+
+<div class="col-sm-8">
+    <div class="page-header">
+        <h1><%= t("root.pop_creatives") %></h1>
+    </div>
+
+    <%= render "shared/creatives" %>
+
+</div>

@@ -9,13 +9,19 @@
             <li>
                 <a href=<%= url_for new_creative_path %>>
                     <span class="glyphicon glyphicon-plus "></span>
-                    Write new creative
+                    <%= t("navigation.write_new") %>
                 </a>
             </li>
             <li>
-                <%= link_to 'All my creatives', creatives_path %>
+                <%= link_to t("navigation.all_creatives"), creatives_path %>
             </li>
             <li class="divider"></li>
+            <% if can? :manage, nil %>
+                <li>
+                    <%= link_to t("navigation.admin_panel"), nil %>
+                </li>
+                <li class="divider"></li>
+            <% end %>
             <li>
                 <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
             </li>

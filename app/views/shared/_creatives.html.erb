@@ -1,5 +1,6 @@
 <% @creatives.each do |creative| %>
-<div class="col-sm-8 creative">
+
+<div class="creative">
     <h2><%= link_to creative.title, creative %><small></small></h2>
 
     <p><%= creative.description %></p>
@@ -14,4 +15,5 @@
         <% end %>
     </div>
 </div>
+
 <% end %>

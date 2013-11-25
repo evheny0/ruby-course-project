@@ -30,6 +30,9 @@ gem 'jbuilder', '~> 1.2'
 # Use Device for accounts
 gem 'devise'
 
+# Use cancan for roles
+gem 'cancan'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

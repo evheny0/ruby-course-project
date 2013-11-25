@@ -10,14 +10,14 @@
 <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <td><%= link_to 'Cource Project', root_path, :class => "navbar-brand" %></td>
+            <td><%= link_to 'Course Project', root_path, :class => "navbar-brand" %></td>
         </div>
         <ul class="nav navbar-nav">
-        <li><%= link_to 'Creatives', creatives_path %></li>
+        <li><%= link_to t("navigation.creatives"), creatives_path %></li>
 
         <form action=<%= url_for root_path %> method="GET" class="navbar-form navbar-left" role="search">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search..." name="text">
+                <input type="text" class="form-control" placeholder=<%= t("navigation.search") %> name="text">
             </div>
         </form>
         </ul>
@@ -28,7 +28,7 @@
 </nav>
 
 <div class="container">
-<%= yield %>
+    <%= yield %>
 </div>
 </body>
 </html>

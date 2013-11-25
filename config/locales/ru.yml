@@ -1,2 +1,14 @@
 ru:
-  hello: "Привет"
+  navigation:
+    creatives: "Креативы"
+    search: "Поиск..."
+    write_new: "Создать креатив"
+    all_creatives: "Все мои креативы"
+    admin_panel: "Панель админа"
+  root:
+    tags_cloud: "Облако тегов"
+    pop_creatives: "Популярные креативы"
+    pop_users: "Популярные юзеры"
+  home:
+    index:
+       hello: "Привет"

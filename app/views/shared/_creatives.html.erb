@@ -1,13 +1,13 @@
 <% @creatives.each do |creative| %>
 
 <div class="creative">
-    <h2><%= link_to creative.title, creative %><small></small></h2>
+    <h2 class="text-center"><%= link_to creative.title, creative %><small></small></h2>
 
     <p><%= creative.description %></p>
 
     <div class="creative-footer"> 
         <span class="glyphicon glyphicon-thumbs-up"></span><a><%= creative.votes %></a>  
-        <span class="glyphicon glyphicon-calendar"></span><a>11.12.2020</a>
+        <span class="glyphicon glyphicon-calendar"></span><a><%= creative.created_at.strftime("%F") %></a>
         <span class="glyphicon glyphicon-user"></span><a><%= creative.user.username %></a>
         <span class="glyphicon glyphicon-tags"></span>
         <% creative.tags.each do |tag| %>

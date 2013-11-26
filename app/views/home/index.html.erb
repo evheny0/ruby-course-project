@@ -1,47 +1,49 @@
-
-<% if notice %>
-    <div class="alert alert-dismissable alert-success">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <%= notice %>
-    </div>
-<% end %>
-<div class="col-lg-4 pull-right">
-    <div class="page-header">
-        <h1><%= t("root.tags_cloud") %></h1>
-    </div>
-
-    <ul class="nav nav-pills">
-        <% @tags.each do |tag| %>
-            <li>
-                <a href="#">
-                    <span class="glyphicon glyphicon-tag"></span>
-                    <%= tag.value %>
-                </a>
-            </li>
-        <% end %>
-    </ul>
-
-    <div class="page-header">
-        <h1><%= t("root.pop_users") %></h1>
-    </div>
-
-    <ul class="nav nav-pills">
-        <% @users.each do |user| %>
-            <li>
-                <a href="#">
-                    <span class="glyphicon glyphicon-user"></span>
-                    <%= user.username %>
-                </a>
-            </li>
-        <% end %>
-    </ul>
-</div>
-
-<div class="col-sm-8">
+<div class="main-content">
     <div class="page-header">
         <h1><%= t("root.pop_creatives") %></h1>
     </div>
 
-    <%= render "shared/creatives" %>
+    <% if notice %>
+        <div class="alert alert-dismissable alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <%= notice %>
+        </div>
+    <% end %>
+
+    <div class="col-lg-3 pull-right">
+        <div class="page-header">
+            <h2 align="center"><%= t("root.tags_cloud") %></h2>
+        </div>
+
+        <ul class="nav nav-pills">
+            <% @tags.each do |tag| %>
+                <li>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-tag"></span>
+                        <%= tag.value %>
+                    </a>
+                </li>
+            <% end %>
+        </ul>
+
+        <div class="page-header">
+            <h2 align="center"><%= t("root.pop_users") %></h2>
+        </div>
+
+        <ul class="nav nav-pills">
+            <% @users.each do |user| %>
+                <li>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <%= user.username %>
+                    </a>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+
+    <div class="col-sm-8">
+        <%= render "shared/creatives" %>
+    </div>
 
 </div>

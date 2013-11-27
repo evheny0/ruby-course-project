@@ -46,6 +46,9 @@ gem 'twitter-bootswatch-rails', '~> 3.0.1'
 # twitter bootstrap helpers gem
 gem 'twitter-bootswatch-rails-helpers'
 
+# use for pagination
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

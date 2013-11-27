@@ -6,14 +6,19 @@
     <p><%= creative.description %></p>
 
     <div class="creative-footer"> 
-        <span class="glyphicon glyphicon-thumbs-up"></span><a><%= creative.votes %></a>  
         <span class="glyphicon glyphicon-calendar"></span><a><%= creative.created_at.strftime("%F") %></a>
         <span class="glyphicon glyphicon-user"></span><a><%= creative.user.username %></a>
         <span class="glyphicon glyphicon-tags"></span>
         <% creative.tags.each do |tag| %>
             <a><%= tag.value %></a>
         <% end %>
+        <span class="btn btn-default btn-xs pull-right">
+            <span class="glyphicon glyphicon-thumbs-up"></span>
+            <%= creative.votes %>
+        </span>  
     </div>
 </div>
 <hr style="width: 50%;"/>
 <% end %>
+
+<%= will_paginate @creatives, renderer: BootstrapPagination::Rails %>

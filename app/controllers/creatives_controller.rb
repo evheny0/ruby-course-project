@@ -4,7 +4,7 @@ class CreativesController < ApplicationController
   # GET /creatives
   # GET /creatives.json
   def index
-    @creatives = Creative.all
+    @creatives = Creative.paginate(:page => params[:page])
   end
 
   # GET /creatives/1

@@ -18,7 +18,7 @@
         <ul class="nav nav-pills">
             <% @tags.each do |tag| %>
                 <li>
-                    <a href="#">
+                    <a href=<%= search_path + "?q=" + tag.value %>>
                         <span class="glyphicon glyphicon-tag"></span>
                         <%= tag.value %>
                     </a>

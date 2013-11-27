@@ -40,7 +40,7 @@ text-transform: uppercase;
 }
 
 .creative-footer {
-    border-bottom: 1px solid #eee;
+    /*border-bottom: 1px solid #eee;*/
     clear: both;
     font-size: 12px;
     padding-bottom: 15px;

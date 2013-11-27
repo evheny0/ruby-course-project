@@ -26,6 +26,11 @@ en:
     write_new: "Write creative"
     all_creatives: "All my creatives"
     admin_panel: "Admin panel"
+
+    theme: "Switch theme"
+    language: "Language"
+    language_en: "English"
+    language_ru: "Русский"
   root:
     tags_cloud: "Tags cloud"
     pop_creatives: "Popular creatives"

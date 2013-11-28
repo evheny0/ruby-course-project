@@ -13,6 +13,8 @@ RubyCourseProject::Application.routes.draw do
   get 'vote/:id' => 'vote#change_vote', as: :vote
 
   get 'tags/start_with' => 'tags#start_with'
+
+  get 'user/:id' => 'user#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

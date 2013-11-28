@@ -6,7 +6,11 @@
 
         <div class="creative-footer"> 
             <span class="glyphicon glyphicon-calendar"></span><a><%= creative.created_at.strftime("%F") %></a>
-            <span class="glyphicon glyphicon-user"></span><a><%= creative.user.username %></a>
+            <span class="glyphicon glyphicon-user"></span>
+
+                <%= link_to creative.user.username, "/user/1" %>
+
+
             <span class="glyphicon glyphicon-tags"></span>
             <% creative.tags.each do |tag| %>
                 <a><%= tag.value %></a>

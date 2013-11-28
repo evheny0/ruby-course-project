@@ -1,5 +1,6 @@
 class CreativesController < ApplicationController
   before_action :set_creative, only: [:show, :edit, :update, :destroy]
+  before_action :tags_string_to_array, only: :create
 
   # GET /creatives
   # GET /creatives.json
@@ -25,9 +26,11 @@ class CreativesController < ApplicationController
   # POST /creatives.json
   def create
     @creative = Creative.new({ :user_id => current_user.id , :votes => 0 }.merge(creative_params))
-
     respond_to do |format|
       if @creative.save
+        @tags.each do |t|
+          @creative.tags.create(:value => t, :ammount => 1)
+        end
         format.html { redirect_to @creative, notice: 'Creative was successfully created.' }
         format.json { render action: 'show', status: :created, location: @creative }
       else
@@ -70,5 +73,10 @@ class CreativesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def creative_params
       params.require(:creative).permit(:title, :description)
+    end
+
+    def tags_string_to_array
+      string_tags = params[:tags]
+      @tags = string_tags.scan(/[A-Za-zа-яА-Я\d]+/)
     end
 end

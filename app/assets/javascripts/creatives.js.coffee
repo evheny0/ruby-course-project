@@ -2,32 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-(->
-  voteUrl = "/vote/"
-  refreshAfterLike = (data, parent_element) ->
-    element = parent_element.children("#vote")
-    switch data.response
-      when "true"
-        element.html parseInt(element.text()) + 1
-      when "false"
-        element.html parseInt(element.text()) - 1
 
-  changeVote = ->
-    element = $(this)
-    addLike(element.attr("id")).done (data) ->
-      refreshAfterLike data, element
-
-
-  addLike = (creativeId) ->
-    $.ajax
-      url: voteUrl + creativeId
-      dataType: "json"
-
-
-  wireEvents = ->
-    $(document).on "click", ".vote-button", changeVote
-
-  $ ->
-    wireEvents()
-
-)()
+tagUrl = "/tags/start_with/"
+$(".tags").tagsinput confirmKeys: [13, 32, 44]
+$(".tags").tagsinput("input").typeahead(remote: tagUrl + "?q=%QUERY").bind "typeahead:selected", $.proxy((obj, datum) ->
+  @tagsinput "add", datum.value
+, $(".tags"))

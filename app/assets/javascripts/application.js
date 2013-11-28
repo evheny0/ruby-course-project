@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require creatives
+//= require home
+//= require twitter/typeahead
+//= require bootstrap-tagsinput.min

@@ -1,63 +1,23 @@
 <% @creatives.each do |creative| %>
+    <div class="creative">
+        <h2 class="text-center"><%= link_to creative.title, creative %><small></small></h2>
 
-<div class="creative">
-    <h2 class="text-center"><%= link_to creative.title, creative %><small></small></h2>
+        <p><%= creative.description %></p>
 
-    <p><%= creative.description %></p>
-
-    <div class="creative-footer"> 
-        <span class="glyphicon glyphicon-calendar"></span><a><%= creative.created_at.strftime("%F") %></a>
-        <span class="glyphicon glyphicon-user"></span><a><%= creative.user.username %></a>
-        <span class="glyphicon glyphicon-tags"></span>
-        <% creative.tags.each do |tag| %>
-            <a><%= tag.value %></a>
-        <% end %>
-        <span id=<%= creative.id %> class="vote-button btn btn-default btn-xs pull-right">
-            <span class="glyphicon glyphicon-thumbs-up"></span>
-            <span id="vote"><%= creative.votes %></span>
-        </span>  
+        <div class="creative-footer"> 
+            <span class="glyphicon glyphicon-calendar"></span><a><%= creative.created_at.strftime("%F") %></a>
+            <span class="glyphicon glyphicon-user"></span><a><%= creative.user.username %></a>
+            <span class="glyphicon glyphicon-tags"></span>
+            <% creative.tags.each do |tag| %>
+                <a><%= tag.value %></a>
+            <% end %>
+            <span id=<%= creative.id %> class="vote-button btn btn-default btn-xs pull-right">
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+                <span id="vote"><%= creative.votes %></span>
+            </span>  
+        </div>
     </div>
-</div>
-<hr style="width: 50%;"/>
+    <hr style="width: 50%;"/>
 <% end %>
 
 <%= will_paginate @creatives, renderer: BootstrapPagination::Rails %>
-
-<script>
-/*(function () {
-    var voteUrl = "<%= vote_path(id: 0) %>";
-
-    var refreshAfterLike = function(data, parent_element) {
-        element = parent_element.children("#vote");
-        switch (data.response) {
-        case "true":
-            element.html(parseInt(element.text()) + 1);
-            break;
-        case "false":
-            element.html(parseInt(element.text()) - 1);
-            break;
-        };
-    };
-
-    var changeVote = function () {
-        element = $(this);
-        addLike(element.attr('id')).done(function(data) { 
-            refreshAfterLike(data, element);
-        });
-    };
-
-    var addLike = function(creativeId) {
-        return $.ajax({
-            url: voteUrl + creativeId,
-            dataType: 'json'
-        });
-    };
-    var wireEvents = function () {
-        $(document).on("click", ".vote-button", changeVote);
-    };
-
-    $(function () {
-        wireEvents();
-    });
-}());*/
-</script>

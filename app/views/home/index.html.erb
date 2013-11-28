@@ -1,8 +1,4 @@
 <div class="main-content">
-    <div class="page-header">
-        <h1><%= t("root.pop_creatives") %></h1>
-    </div>
-
     <% if notice %>
         <div class="alert alert-dismissable alert-success">
             <button type="button" class="close" data-dismiss="alert">×</button>
@@ -10,6 +6,10 @@
         </div>
     <% end %>
 
+    <div class="page-header">
+        <h1><%= t("root.pop_creatives") %></h1>
+    </div>
+    
     <div class="col-lg-4 pull-right">
         <div class="page-header">
             <h2 align="center"><%= t("root.tags_cloud") %></h2>

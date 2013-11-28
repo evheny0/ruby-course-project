@@ -48,7 +48,12 @@ gem 'twitter-bootswatch-rails-helpers'
 
 # use for pagination
 gem 'will_paginate'
+# bootstrap for will_paginate
 gem 'will_paginate-bootstrap'
+
+# use for autocomplete
+gem 'twitter-typeahead-rails'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

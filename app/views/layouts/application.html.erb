@@ -9,49 +9,49 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-static-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <td><%= link_to 'Course Project', root_path, :class => "navbar-brand" %></td>
-        </div>
-        <ul class="nav navbar-nav">
-        <li><%= link_to t("navigation.creatives"), creatives_path %></li>
-
-        <form action=<%= url_for search_path %> method="GET" class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder=<%= t("navigation.search") %> name="q">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <td><%= link_to 'Course Project', root_path, :class => "navbar-brand" %></td>
             </div>
-        </form>
-        </ul>
-        <ul class="nav navbar-nav pull-right">
-            <%= render "shared/login_menu" %>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                    <li>
-                        <%= link_to t("navigation.theme"), root_path +  "?theme=switch" %>
-                    </li>
-                    <li role="presentation" class="divider"></li>
-                    <li class="dropdown-header">
-                        <%= t("navigation.language") %>
-                    </li>
-                    <li>
-                        <%= link_to t("navigation.language_ru"), request.path +  "?locale=ru" %>
-                    </li>
-                    <li>
-                        <%= link_to t("navigation.language_en"), request.path +  "?locale=en" %>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</nav>
+            <ul class="nav navbar-nav">
+            <li><%= link_to t("navigation.creatives"), creatives_path %></li>
 
-<div class="container">
-    <%= yield %>
-</div>
+            <form action=<%= url_for search_path %> method="GET" class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder=<%= t("navigation.search") %> name="q">
+                </div>
+            </form>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <%= render "shared/login_menu" %>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <%= link_to t("navigation.theme"), root_path +  "?theme=switch" %>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li class="dropdown-header">
+                            <%= t("navigation.language") %>
+                        </li>
+                        <li>
+                            <%= link_to t("navigation.language_ru"), request.path +  "?locale=ru" %>
+                        </li>
+                        <li>
+                            <%= link_to t("navigation.language_en"), request.path +  "?locale=en" %>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <%= yield %>
+    </div>
 
 </body>
 </html>

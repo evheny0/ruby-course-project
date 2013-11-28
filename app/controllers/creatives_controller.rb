@@ -1,6 +1,6 @@
 class CreativesController < ApplicationController
   before_action :set_creative, only: [:show, :edit, :update, :destroy]
-  before_action :tags_string_to_array, only: :create
+  before_action :string_tags_to_array, only: :create
 
   # GET /creatives
   # GET /creatives.json
@@ -28,9 +28,7 @@ class CreativesController < ApplicationController
     @creative = Creative.new({ :user_id => current_user.id , :votes => 0 }.merge(creative_params))
     respond_to do |format|
       if @creative.save
-        @tags.each do |t|
-          @creative.tags.create(:value => t, :ammount => 1)
-        end
+        add_tags_to_creative
         format.html { redirect_to @creative, notice: 'Creative was successfully created.' }
         format.json { render action: 'show', status: :created, location: @creative }
       else
@@ -57,6 +55,7 @@ class CreativesController < ApplicationController
   # DELETE /creatives/1
   # DELETE /creatives/1.json
   def destroy
+    delete_tags_from_creative
     @creative.destroy
     respond_to do |format|
       format.html { redirect_to creatives_url }
@@ -75,8 +74,33 @@ class CreativesController < ApplicationController
       params.require(:creative).permit(:title, :description)
     end
 
-    def tags_string_to_array
+
+    def string_tags_to_array
       string_tags = params[:tags]
       @tags = string_tags.scan(/[A-Za-zа-яА-Я\d]+/)
+    end
+
+    def add_tags_to_creative
+      @tags.each do |t|
+        tag = Tag.where(:value => t).last
+        if tag
+          tag.ammount += 1
+          tag.save
+          @creative.tags << tag
+        else
+          @creative.tags.create(:value => t, :ammount => 1)
+        end
+      end
+    end
+
+    def delete_tags_from_creative
+      @creative.tags.to_a.each do |tag|
+        if tag.ammount == 1
+          tag.destroy
+        else
+          tag.ammount -= 1
+          tag.save
+        end
+      end
     end
 end

@@ -12,9 +12,9 @@
         <% creative.tags.each do |tag| %>
             <a><%= tag.value %></a>
         <% end %>
-        <span class="btn btn-default btn-xs pull-right">
+        <span id=<%= creative.id %> class="vote-button btn btn-default btn-xs pull-right">
             <span class="glyphicon glyphicon-thumbs-up"></span>
-            <%= creative.votes %>
+            <span id="vote"><%= creative.votes %></span>
         </span>  
     </div>
 </div>
@@ -22,3 +22,39 @@
 <% end %>
 
 <%= will_paginate @creatives, renderer: BootstrapPagination::Rails %>
+
+<script>
+    var voteUrl = "<%= vote_path(id: 0) %>";
+
+    var refreshAfterLike = function(data) {
+        switch (data) {
+        case true:
+            $("#vote").html(parseInt($("#vote").text()) + 1);
+            break;
+        case false:
+            $("#vote").html(parseInt($("#vote").text()) - 1);
+            break;
+        };
+    };
+
+    var changeVote = function () {
+        addLike($(this).attr('id')).done(refreshAfterLike);
+    };
+
+    var addLike = function(creativeId) {
+        return $.ajax({
+            url: voteUrl + creativeId,
+            dataType: 'json'
+        });
+    };
+
+    (function () {
+        var wireEvents = function () {
+            $(document).on("click", ".vote-button", changeVote);
+        };
+
+        $(function () {
+            wireEvents();
+        });
+    }());
+</script>

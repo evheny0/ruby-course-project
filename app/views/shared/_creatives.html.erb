@@ -24,21 +24,26 @@
 <%= will_paginate @creatives, renderer: BootstrapPagination::Rails %>
 
 <script>
+/*(function () {
     var voteUrl = "<%= vote_path(id: 0) %>";
 
-    var refreshAfterLike = function(data) {
-        switch (data) {
-        case true:
-            $("#vote").html(parseInt($("#vote").text()) + 1);
+    var refreshAfterLike = function(data, parent_element) {
+        element = parent_element.children("#vote");
+        switch (data.response) {
+        case "true":
+            element.html(parseInt(element.text()) + 1);
             break;
-        case false:
-            $("#vote").html(parseInt($("#vote").text()) - 1);
+        case "false":
+            element.html(parseInt(element.text()) - 1);
             break;
         };
     };
 
     var changeVote = function () {
-        addLike($(this).attr('id')).done(refreshAfterLike);
+        element = $(this);
+        addLike(element.attr('id')).done(function(data) { 
+            refreshAfterLike(data, element);
+        });
     };
 
     var addLike = function(creativeId) {
@@ -47,14 +52,12 @@
             dataType: 'json'
         });
     };
+    var wireEvents = function () {
+        $(document).on("click", ".vote-button", changeVote);
+    };
 
-    (function () {
-        var wireEvents = function () {
-            $(document).on("click", ".vote-button", changeVote);
-        };
-
-        $(function () {
-            wireEvents();
-        });
-    }());
+    $(function () {
+        wireEvents();
+    });
+}());*/
 </script>

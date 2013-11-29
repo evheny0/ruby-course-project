@@ -1,6 +1,6 @@
 class CreativesController < ApplicationController
   before_action :set_creative, only: [:show, :edit, :update, :destroy]
-  before_action :string_tags_to_array, only: :create
+  before_action :string_of_tags_to_array, only: :create
 
   # GET /creatives
   # GET /creatives.json
@@ -75,7 +75,7 @@ class CreativesController < ApplicationController
     end
 
 
-    def string_tags_to_array
+    def string_of_tags_to_array
       string_tags = params[:tags]
       @tags = string_tags.scan(/[A-Za-zа-яА-Я\d]+/)
     end

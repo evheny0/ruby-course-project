@@ -16,3 +16,4 @@
 //= require home
 //= require twitter/typeahead
 //= require bootstrap-tagsinput.min
+//= require raphael

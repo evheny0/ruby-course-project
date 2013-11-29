@@ -54,6 +54,8 @@ gem 'will_paginate-bootstrap'
 # use for autocomplete
 gem 'twitter-typeahead-rails'
 
+# use for diagrams
+gem 'raphael-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

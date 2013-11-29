@@ -1,6 +1,80 @@
-<h1>Editing creative</h1>
+<div class="main-content">
+    <div class="page-header">
+        <h1>Editing creative<small> | <%= link_to 'Show', @creative %></small></h1>
+    </div>
+    
 
-<%= render 'form' %>
+    <%= render 'form' %>
+    <div class="col-md-5">
+        <div class="list-group">
+            <a class="list-group-item" >
+                <h4 class="list-group-item-heading">Creative info</h4>
+            </a>
+        </div>
+        <h4 align="center">Chapters:</h4>
+        <div id="chapters" class="list-group">
+            <% @creative.chapters.sort_by{|e| e[:order]}.each do |chapter| %>
+                <a id=<%= chapter.order %> class="list-group-item" >
+                    <h4 class="list-group-item-heading"><%= chapter.title %></h4>
+                </a>
+            <% end %>
+        </div>
+    </div>
+</div>
+<script>
+    (function() {
+        creativeUrl = "/creatives/<%= @creative.id %>/reorder_chapters";
+        $("#chapters").sortable();
+        var sorted = $("#chapters").sortable("serialize");
+        
+        $("#chapters").on("sortupdate", function() {
+            var order = $("#chapters").sortable("toArray");
+            $.ajax({
+                url: creativeUrl + "/?order=" + order.join(""),
+            });
+            $("#chapters").find("a").each(function(i) {
+                $(this).attr("id", i);
+            });
+        });
+    })();
 
-<%= link_to 'Show', @creative %> |
-<%= link_to 'Back', creatives_path %>
+
+
+
+(function() {
+  var addLike, changeVote, refreshAfterLike, voteUrl, wireEvents;
+  voteUrl = "/vote/";
+  refreshAfterLike = function(data, parent_element) {
+    var element;
+    element = parent_element.children("#vote");
+    switch (data.response) {
+      case "true":
+        return element.html(parseInt(element.text()) + 1);
+      case "false":
+        return element.html(parseInt(element.text()) - 1);
+    }
+  };
+  changeVote = function() {
+    var element;
+    element = $(this);
+    return addLike(element.attr("id")).done(function(data) {
+      return refreshAfterLike(data, element);
+    });
+  };
+  addLike = function(creativeId) {
+    return $.ajax({
+      url: voteUrl + creativeId,
+      dataType: "json"
+    });
+  };
+  wireEvents = function() {
+    return $(document).on("click", ".vote-button", changeVote);
+  };
+  return $(function() {
+    return wireEvents();
+  });
+})();
+
+</script>
+
+

@@ -16,4 +16,9 @@
 //= require home
 //= require twitter/typeahead
 //= require bootstrap-tagsinput.min
+//= require jquery.ui.draggable
+//= require jquery.ui.droppable
+//= require jquery.ui.resizable
+//= require jquery.ui.selectable
+//= require jquery.ui.sortable
 

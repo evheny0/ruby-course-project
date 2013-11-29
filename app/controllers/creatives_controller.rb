@@ -1,5 +1,5 @@
 class CreativesController < ApplicationController
-  before_action :set_creative, only: [:show, :edit, :update, :destroy]
+  before_action :set_creative, only: [:show, :edit, :update, :destroy, :reorder_chapters]
   before_action :string_of_tags_to_array, only: :create
 
   # GET /creatives
@@ -61,6 +61,14 @@ class CreativesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to creatives_url }
       format.json { head :no_content }
+    end
+  end
+
+  def reorder_chapters
+    chapter = @creative.chapters.sort_by{|e| e[:order]}
+    params[:order].each_char.with_index do |i, position|
+      chapter[i.to_i].order = position
+      chapter[i.to_i].save
     end
   end
 

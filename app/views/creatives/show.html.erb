@@ -15,9 +15,9 @@
         <%= link_to 'Back', creatives_path %></small></h1>
     </div>
     <blockquote><%= @creative.description %></blockquote>
-    <% @creative.chapters.each do |chapter| %>
+    <% @creative.chapters.sort_by{|e| e[:order]}.each do |chapter| %>
         <h3><%= chapter.title %></h3>
-        <p><%= @markdown.render(h chapter.content).html_safe %></p>
+        <%= @markdown.render(h chapter.content).html_safe %>
     <% end %>
 
     <div class="creative-footer"> 

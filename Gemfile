@@ -57,6 +57,9 @@ gem 'twitter-typeahead-rails'
 # use for diagrams
 gem 'raphael-rails'
 
+# use for markdown parser
+gem 'redcarpet'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

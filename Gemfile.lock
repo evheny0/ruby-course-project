@@ -89,6 +89,7 @@ GEM
     raphael-rails (2.1.2)
     rdoc (3.12.2)
       json (~> 1.4)
+    redcarpet (3.0.0)
     ref (1.0.5)
     sdoc (0.3.20)
       json (>= 1.1.3)
@@ -147,6 +148,7 @@ DEPENDENCIES
   less-rails
   rails (= 4.0.1)
   raphael-rails
+  redcarpet
   sdoc
   sqlite3
   therubyracer

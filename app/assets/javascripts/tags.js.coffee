@@ -21,7 +21,7 @@ o =
       t = $(this)
       allValues += parseInt(t.find("#value").attr("value"))
 
-    colors = ["#97BE0D", "#D84F5F", "#88B8E6", "#BEDBE9", "#EDEBEE", "#8861E0", "#E5B07A", "#3AAD49", "#2267C9", "#DEDA68"]
+    colors = ["#97BE0D", "#D84F5F", "#88B8E6", "#BEDBE9", "#EDEBEE", "#8861E0", "#E5B07A", "#3AAD49", "#BE4654", "#DEDA68"]
     r.circle(150, 150, 85).attr
       stroke: "none"
       fill: "#193340"

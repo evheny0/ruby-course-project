@@ -28,7 +28,6 @@
                         <%= chapter.title %>
                     </h4>
                 </a>
-
             <% end %>
         </div>
         <div class="list-group">
@@ -77,7 +76,6 @@
             $(".item").removeClass('active');
             $(".well").load(chapterEditUrl + "/new.json");
             $("#chapters").append("<a class='list-group-item item active'><h4 class='list-group-item-heading'>New</h4></a>");
-
         });
     })();
 

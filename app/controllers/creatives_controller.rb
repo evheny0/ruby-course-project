@@ -1,6 +1,6 @@
 class CreativesController < ApplicationController
   before_action :set_creative, only: [:show, :edit, :update, :destroy, :reorder_chapters]
-  before_action :string_of_tags_to_array, only: :create
+  before_action :string_of_tags_to_array, only: [:create, :update]
 
   # GET /creatives
   # GET /creatives.json
@@ -46,6 +46,8 @@ class CreativesController < ApplicationController
   # PATCH/PUT /creatives/1
   # PATCH/PUT /creatives/1.json
   def update
+    delete_tags_from_creative
+    add_tags_to_creative
     respond_to do |format|
       if @creative.update(creative_params)
         format.html { redirect_to @creative, notice: 'Creative was successfully updated.' }
@@ -115,6 +117,7 @@ class CreativesController < ApplicationController
           tag.ammount -= 1
           tag.save
         end
+        @creative.tags.delete(tag)
       end
     end
 end

@@ -13,7 +13,7 @@
                 </a>
             </li>
             <li>
-                <%= link_to t("navigation.all_creatives"), creatives_path %>
+                <%= link_to t("navigation.all_creatives"), "/user/" + (current_user.id).to_s %>
             </li>
             <li class="divider"></li>
             <% if can? :manage, nil %>
@@ -23,11 +23,11 @@
                 <li class="divider"></li>
             <% end %>
             <li>
-                <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+                <%= link_to t("navigation.sign_out"), destroy_user_session_path, :method => :delete %>
             </li>
         </ul>
     </li>
 <% else %>
-    <li ><%= link_to "Login", new_user_session_path %></li>
-    <li ><%= link_to "Register", new_user_registration_path %></li>
+    <li ><%= link_to t("navigation.login"), new_user_session_path %></li>
+    <li ><%= link_to t("navigation.register"), new_user_registration_path %></li>
 <% end %>

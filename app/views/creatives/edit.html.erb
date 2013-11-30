@@ -1,6 +1,6 @@
 <div class="main-content">
     <div class="page-header">
-        <h1>Editing creative<small> | <%= link_to 'Show', @creative %></small></h1>
+        <h1><%= t("creative.edit_header") %><small> | <%= link_to t("creative.show"), @creative %></small></h1>
     </div>
     
     <div class="col-md-7">
@@ -11,10 +11,10 @@
     <div class="col-md-5">
         <div class="list-group">
             <a class="list-group-item item" >
-                <h4 class="list-group-item-heading">Creative info</h4>
+                <h4 class="list-group-item-heading"><%= t("creative.creative_info") %></h4>
             </a>
         </div>
-        <h4 align="center">Chapters:</h4>
+        <h4 align="center"><%= t("creative.chapters") %></h4>
         <div id="chapters" class="list-group">
             <% @creative.chapters.sort_by{|e| e[:order]}.each do |chapter| %>
                 <a id=<%= chapter.order %> class="list-group-item item" data-toggle="button" data-id=<%= chapter.id %>>
@@ -24,7 +24,10 @@
         </div>
         <div class="list-group">
             <a class="list-group-item item add" >
-                <h4 class="list-group-item-heading">Add new</h4>
+                <h4 class="list-group-item-heading">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <%= t("creative.add_new") %>
+                </h4>
             </a>
         </div>
     </div>

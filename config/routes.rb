@@ -5,6 +5,7 @@ RubyCourseProject::Application.routes.draw do
   resources :chapters
 
   get "home/index"
+  get 'switch_theme/' => 'home#switch_theme'
 
   devise_for :users
 

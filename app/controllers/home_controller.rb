@@ -11,6 +11,7 @@ class HomeController < ApplicationController
     else
         cookies[:theme] = "flatly"
     end
+    render :layout => "application"
     redirect_to root_path  #how to reload layout?
   end
 

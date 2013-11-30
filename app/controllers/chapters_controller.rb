@@ -1,4 +1,5 @@
 class ChaptersController < ApplicationController
+  before_action :set_creative
   before_action :set_chapter, only: [:show, :edit, :update, :destroy]
 
   # GET /chapters
@@ -14,7 +15,7 @@ class ChaptersController < ApplicationController
 
   # GET /chapters/new
   def new
-    @chapter = Chapter.new
+    @chapter = @creative.chapters.build
     respond_to do |format|
       format.html { render "new" }
       format.json { render "_form.html", :layout => false }
@@ -32,11 +33,11 @@ class ChaptersController < ApplicationController
   # POST /chapters
   # POST /chapters.json
   def create
-    @chapter = Chapter.new(chapter_params)
-
+    @chapter = @creative.chapters.create(chapter_params)
+    @chapter.order = @creative.chapters.maximum("order") + 1
     respond_to do |format|
       if @chapter.save
-        format.html { redirect_to @chapter, notice: 'Chapter was successfully created.' }
+        format.html { redirect_to [@creative, @chapter], notice: 'Chapter was successfully created.' }
         format.json { render action: 'show', status: :created, location: @chapter }
       else
         format.html { render action: 'new' }
@@ -70,9 +71,12 @@ class ChaptersController < ApplicationController
   end
 
   private
+    def set_creative
+      @creative = Creative.find(params[:creative_id])
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_chapter
-      @chapter = Chapter.find(params[:id])
+      @chapter = @creative.chapters.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

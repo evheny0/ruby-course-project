@@ -37,7 +37,7 @@
 <script>
     (function() {
         creativeUrl = "/creatives/<%= @creative.id %>/reorder_chapters";
-        chapterEditUrl = "/chapters/";
+        chapterEditUrl = "/creatives/<%= @creative.id %>/chapters/";
         creativeEditUrl = "/creatives/<%= @creative.id %>/edit.json";
         $("#chapters").sortable();
         var sorted = $("#chapters").sortable("serialize");
@@ -64,6 +64,7 @@
         });
 
         $(document).on("click", ".add", function() {
+            $(".item").removeClass('active');
             $(".well").load(chapterEditUrl + "/new.json");
             $("#chapters").append("<a class='list-group-item item active'><h4 class='list-group-item-heading'>New</h4></a>");
         });

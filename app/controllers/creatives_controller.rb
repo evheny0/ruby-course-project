@@ -74,7 +74,7 @@ class CreativesController < ApplicationController
       chapter[i.to_i].order = position
       chapter[i.to_i].save
     end
-    true
+    render :nothing => true
   end
 
   private

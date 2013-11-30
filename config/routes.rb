@@ -1,8 +1,9 @@
 RubyCourseProject::Application.routes.draw do
 
 
-  resources :creatives
-  resources :chapters
+  resources :creatives do
+    resources :chapters
+  end
 
   get "home/index"
   get 'switch_theme/' => 'home#switch_theme'

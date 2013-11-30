@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20131127193339) do
     t.integer "tag_id"
   end
 
-  add_index "creatives_tags", ["creative_id", "tag_id"], name: "index_creatives_tags_on_creative_id_and_tag_id"
+  add_index "creatives_tags", ["creative_id", "tag_id"], name: "index_creatives_tags_on_creative_id_and_tag_id", using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "value"
@@ -62,9 +62,9 @@ ActiveRecord::Schema.define(version: 20131127193339) do
     t.boolean  "admin?"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "votes", force: true do |t|
     t.integer  "user_id"

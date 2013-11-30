@@ -34,7 +34,7 @@ class ChaptersController < ApplicationController
   # POST /chapters.json
   def create
     @chapter = @creative.chapters.create(chapter_params)
-    @chapter.order = @creative.chapters.maximum("order") + 1
+    @chapter.order = (@creative.chapters.maximum("order") || 0) + 1
     respond_to do |format|
       if @chapter.save
         format.html { redirect_to [@creative, @chapter], notice: 'Chapter was successfully created.' }

@@ -22,7 +22,8 @@
 
   <div class="form-group">
     <%= f.label t("creative.tag") %>
-    <input type="text" class="form-control tags" placeholder="<%= t('creative.enter_tags') %>" name="tags" data-role="tagsinput" />
+    <input type="text" class="form-control tags" placeholder="<%= t('creative.enter_tags') %>" name="tags" data-role="tagsinput" 
+        value="<% @creative.tags.each do |tag| %><%= tag.value %>,<% end %>"/>
   </div>
   <div class="actions">
     <%= f.submit t("creative.submit"), :class => "btn btn-primary btn-block"  %>

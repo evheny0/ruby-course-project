@@ -20,7 +20,21 @@
     <%= f.text_area :content, :class => "form-control", :rows => 10 %>
   </div>
   <div class="actions">
-    <%= f.submit "Submit", :class => "btn btn-primary btn-block"  %>
+    <%= f.submit "Save", :class => "btn btn-primary btn-block"  %>
   </div>
 <% end %>
 
+<script>
+    ($(".well").find('form')).on('submit', function(e) {
+        $.ajax({
+            type: 'post',
+            url: ($(".well").find('form')).attr( 'action' ),
+            data: ($(".well").find('form')).serialize(),
+            success: function (o) {
+                      console.log(o);
+                alert('MUST ALERT TO DETERMINE SUCCESS PAGE');
+            }
+        });
+        e.preventDefault();
+    });
+</script>

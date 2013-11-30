@@ -1,8 +1,7 @@
 class HomeController < ApplicationController
   def index
-    #I18n.locale = :ru
-    @creatives = Creative.paginate(:page => params[:page], :per_page => 10)
-    @tags = Tag.all
+    @creatives = Creative.paginate(:page => params[:page], :per_page => 7)
+    @tags = Tag.all.sort_by{|e| -e[:ammount]}.take(10)
     @users = User.all
   end
 

@@ -19,13 +19,17 @@
     <% end %>
 
     <div class="creative-footer"> 
-        <span class="glyphicon glyphicon-thumbs-up"></span><a><%= @creative.votes %></a>  
         <span class="glyphicon glyphicon-calendar"></span><a><%= @creative.created_at.strftime("%F") %></a>
-        <span class="glyphicon glyphicon-user"></span><a><%= @creative.user.username %></a>
+        <span class="glyphicon glyphicon-user"></span>
+        <%= link_to @creative.user.username, "/user/" + @creative.user.id.to_s %>
         <span class="glyphicon glyphicon-tags"></span>
         <% @creative.tags.each do |tag| %>
-            <a><%= tag.value %></a>
+            <%= link_to tag.value, search_path + "/?q=" + tag.value %>
         <% end %>
+        <span id=<%= @creative.id %> class="vote-button btn btn-default btn-xs pull-right">
+            <span class="glyphicon glyphicon-thumbs-up"></span>
+            <span id="vote"><%= @creative.votes %></span>
+        </span>  
     </div>
 
 </div>

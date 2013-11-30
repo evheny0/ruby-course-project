@@ -20,4 +20,4 @@
 //= require jquery.ui.resizable
 //= require jquery.ui.selectable
 //= require jquery.ui.sortable
-
+//= require bootstrap-tagsinput.min

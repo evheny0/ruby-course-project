@@ -12,10 +12,18 @@
             <% creative.tags.each do |tag| %>
                 <%= link_to tag.value, search_path + "/?q=" + tag.value %>
             <% end %>
-            <span id=<%= creative.id %> class="vote-button btn btn-default btn-xs pull-right">
-                <span class="glyphicon glyphicon-thumbs-up"></span>
-                <span id="vote"><%= creative.votes %></span>
-            </span>  
+            <% if !creative.votes.where(:user_id => current_user.id).last %>
+                <span id=<%= creative.id %> class="vote-button btn btn-default btn-xs pull-right">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                    <span id="vote"><%= creative.num_of_votes %></span>
+                </span> 
+            <% else %>
+                <span id=<%= creative.id %> class="vote-button btn btn-primary btn-xs pull-right">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                    <span id="vote"><%= creative.num_of_votes %></span>
+                </span> 
+
+            <% end %> 
         </div>
     </div>
     <hr style="width: 50%;"/>

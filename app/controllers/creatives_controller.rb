@@ -1,6 +1,7 @@
 class CreativesController < ApplicationController
   before_action :set_creative, only: [:show, :edit, :update, :destroy, :reorder_chapters]
   before_action :string_of_tags_to_array, only: [:create, :update]
+  before_action :check_rights, only: [:edit, :update, :destroy, :reorder_chapters]
 
   # GET /creatives
   # GET /creatives.json
@@ -30,7 +31,7 @@ class CreativesController < ApplicationController
   # POST /creatives
   # POST /creatives.json
   def create
-    @creative = Creative.new({ :user_id => current_user.id , :votes => 0 }.merge(creative_params))
+    @creative = Creative.new({ :user_id => current_user.id , :num_of_votes => 0 }.merge(creative_params))
     respond_to do |format|
       if @creative.save
         add_tags_to_creative
@@ -90,6 +91,9 @@ class CreativesController < ApplicationController
       params.require(:creative).permit(:title, :description)
     end
 
+    def check_rights
+      authorize! :update, @creative
+    end
 
     def string_of_tags_to_array
       string_tags = params[:tags]

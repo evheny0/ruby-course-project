@@ -9,8 +9,12 @@
     element = parent_element.children("#vote")
     switch data.response
       when "true"
+        parent_element.removeClass "btn-default"
+        parent_element.addClass "btn-primary"
         element.html parseInt(element.text()) + 1
       when "false"
+        parent_element.removeClass "btn-primary"
+        parent_element.addClass "btn-default"
         element.html parseInt(element.text()) - 1
 
   changeVote = ->

@@ -8,9 +8,15 @@
 
 <div class="creative">
     <div class="page-header">
-        <h1><%= @creative.title %><small> |
-            <%= link_to t("creative.edit"), edit_creative_path(@creative) %> |
-        <%= link_to t("creative.destroy"), @creative, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <h1>
+            <%= @creative.title %>
+            <% if can? :update, @creative %>
+            <small> 
+                | <%= link_to t("creative.edit"), edit_creative_path(@creative) %> |
+                <%= link_to t("creative.destroy"), @creative, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </small>
+            <% end %>
+        </h1>
     </div>
     <blockquote><%= @creative.description %></blockquote>
     <% @creative.chapters.sort_by{|e| e[:order]}.each do |chapter| %>
@@ -28,7 +34,7 @@
         <% end %>
         <span id=<%= @creative.id %> class="vote-button btn btn-default btn-xs pull-right">
             <span class="glyphicon glyphicon-thumbs-up"></span>
-            <span id="vote"><%= @creative.votes %></span>
+            <span id="vote"><%= @creative.num_of_votes %></span>
         </span>  
     </div>
 

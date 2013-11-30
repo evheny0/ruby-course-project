@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131127193339) do
+ActiveRecord::Schema.define(version: 20131130225200) do
 
   create_table "chapters", force: true do |t|
     t.string   "title"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20131127193339) do
   create_table "creatives", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "votes"
+    t.integer  "num_of_votes"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -8,12 +8,12 @@ class VoteController < ApplicationController
       if !@vote
         vote = Vote.create(:user_id => current_user.id, :creative_id => params[:id])
         vote.save
-        @creative.votes += 1
+        @creative.num_of_votes += 1
         @creative.save
         @response = "true"
       else
         @vote.destroy
-        @creative.votes -= 1
+        @creative.num_of_votes -= 1
         @creative.save
         @response = "false"
       end

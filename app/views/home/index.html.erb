@@ -1,52 +1,49 @@
-<div class="main-content">
-    <% if notice %>
-        <div class="alert alert-dismissable alert-success">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <%= notice %>
-        </div>
-    <% end %>
-
-    <div class="page-header">
-        <h1><%= t("root.pop_creatives") %></h1>
+<% if notice %>
+    <div class="alert alert-dismissable alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <%= notice %>
     </div>
+<% end %>
+
+<div class="page-header">
+    <h1><%= t("root.pop_creatives") %></h1>
+</div>
+
+<div class="col-lg-4 pull-right">
     
-    <div class="col-lg-4 pull-right">
-        
-        <div class="page-header">
-            <h2 align="center"><%= t("root.tags_cloud") %></h2>
-        </div>
-
-        <ul id="get" class="nav nav-pills">
-            <% @tags.each do |tag| %>
-                <li>
-                    <a href=<%= search_path + "?q=" + tag.value %>>
-                        <span class="glyphicon glyphicon-tag"></span>
-                        <span id="value" value=<%= tag.ammount %>><%= tag.value %></span>
-                    </a>
-                </li>
-            <% end %>
-        </ul>
-        <div id="diagram"></div>
-        <div class="page-header">
-            <h2 align="center"><%= t("root.pop_users") %></h2>
-        </div>
-
-        <ul class="nav nav-pills">
-            <% @users.each do |user| %>
-                <li>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-user"></span>
-                        <%= user.username %>
-                    </a>
-                </li>
-            <% end %>
-        </ul>
+    <div class="page-header">
+        <h2 align="center"><%= t("root.tags_cloud") %></h2>
     </div>
 
-    <div class="col-sm-8">
-        <%= render "shared/creatives" %>
+    <ul id="get" class="nav nav-pills">
+        <% @tags.each do |tag| %>
+            <li>
+                <a href=<%= search_path + "?q=" + tag.value %>>
+                    <span class="glyphicon glyphicon-tag"></span>
+                    <span id="value" value=<%= tag.ammount %>><%= tag.value %></span>
+                </a>
+            </li>
+        <% end %>
+    </ul>
+    <div id="diagram"></div>
+    <div class="page-header">
+        <h2 align="center"><%= t("root.pop_users") %></h2>
     </div>
 
+    <ul class="nav nav-pills">
+        <% @users.each do |user| %>
+            <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <%= user.username %>
+                </a>
+            </li>
+        <% end %>
+    </ul>
+</div>
+
+<div class="col-sm-8">
+    <%= render "shared/creatives" %>
 </div>
 
 <%= javascript_include_tag "tags" %>

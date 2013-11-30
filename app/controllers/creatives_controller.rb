@@ -21,6 +21,10 @@ class CreativesController < ApplicationController
 
   # GET /creatives/1/edit
   def edit
+    respond_to do |format|
+      format.html { render "edit" }
+      format.json { render "_form.html", :layout => false }
+    end
   end
 
   # POST /creatives

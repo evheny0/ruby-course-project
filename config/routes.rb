@@ -1,6 +1,8 @@
 RubyCourseProject::Application.routes.draw do
 
+
   resources :creatives
+  resources :chapters
 
   get "home/index"
 

@@ -3,7 +3,7 @@ class CreateCreatives < ActiveRecord::Migration
     create_table :creatives do |t|
       t.string :title
       t.text :description
-      t.integer :votes
+      t.integer :num_of_votes
       t.belongs_to :user
 
       t.timestamps

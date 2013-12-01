@@ -18,7 +18,7 @@
             <li class="divider"></li>
             <% if can? :manage, nil %>
                 <li>
-                    <%= link_to t("navigation.admin_panel"), nil %>
+                    <%= link_to t("navigation.admin_panel"), admin_path %>
                 </li>
                 <li class="divider"></li>
             <% end %>

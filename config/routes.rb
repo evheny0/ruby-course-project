@@ -18,6 +18,7 @@ RubyCourseProject::Application.routes.draw do
   get 'tags/start_with' => 'tags#start_with'
 
   get 'user/:id' => 'user#show'
+  get 'admin' => 'user#admin'
   get 'creatives/:id/reorder_chapters' => 'creatives#reorder_chapters'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -6,7 +6,6 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-      can :read, :all
       can :update, Creative, :user_id => user.id
     end
     # Define abilities for the passed in user here. For example:

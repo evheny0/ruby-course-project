@@ -12,7 +12,8 @@ class CreativesController < ApplicationController
   # GET /creatives/1
   # GET /creatives/1.json
   def show
-    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+    renderer = Redcarpet::Render::HTML.new(:filter_html => true)
+    @markdown = Redcarpet::Markdown.new(renderer, :autolink => true)
   end
 
   # GET /creatives/new

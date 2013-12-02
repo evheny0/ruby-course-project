@@ -21,7 +21,7 @@
     <blockquote><%= @creative.description %></blockquote>
     <% @creative.chapters.sort_by{|e| e[:order]}.each do |chapter| %>
         <h2><%= chapter.title %></h2>
-        <%= @markdown.render(h chapter.content).html_safe %>
+        <%= @markdown.render(chapter.content).html_safe %>
     <% end %>
 
     <div class="creative-footer"> 

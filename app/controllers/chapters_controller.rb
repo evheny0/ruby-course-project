@@ -17,7 +17,6 @@ class ChaptersController < ApplicationController
   def new
     @chapter = @creative.chapters.build
     respond_to do |format|
-      format.html { render "new" }
       format.json { render "_form.html", :layout => false }
     end
   end
@@ -37,10 +36,8 @@ class ChaptersController < ApplicationController
     @chapter.order = (@creative.chapters.maximum("order") || -1) + 1
     respond_to do |format|
       if @chapter.save
-        format.html { redirect_to [@creative, @chapter], notice: 'Chapter was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @chapter }
+        format.json { render action: 'show', status: :created }
       else
-        format.html { render action: 'new' }
         format.json { render json: @chapter.errors, status: :unprocessable_entity }
       end
     end
@@ -51,10 +48,8 @@ class ChaptersController < ApplicationController
   def update
     respond_to do |format|
       if @chapter.update(chapter_params)
-        format.html { redirect_to @chapter, notice: 'Chapter was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render action: 'show' }
       else
-        format.html { render action: 'edit' }
         format.json { render json: @chapter.errors, status: :unprocessable_entity }
       end
     end
@@ -65,7 +60,6 @@ class ChaptersController < ApplicationController
   def destroy
     @chapter.destroy
     respond_to do |format|
-      format.html { redirect_to chapters_url }
       format.json { head :no_content }
     end
   end
@@ -74,6 +68,7 @@ class ChaptersController < ApplicationController
     def set_creative
       @creative = Creative.find(params[:creative_id])
     end
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_chapter
       @chapter = @creative.chapters.find(params[:id])

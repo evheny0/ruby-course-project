@@ -26,15 +26,18 @@
 
 <script>
     ($(".well").find('form')).on('submit', function(e) {
+        e.preventDefault();
         $.ajax({
             type: 'post',
-            url: ($(".well").find('form')).attr( 'action' ),
+            url: ($(".well").find('form')).attr('action') + ".json",
             data: ($(".well").find('form')).serialize(),
-            success: function (o) {
-                      console.log(o);
-                alert('MUST ALERT TO DETERMINE SUCCESS PAGE');
+            success: function (data) {
+                showNotification("Saved");
+                link = $(".active");
+                link.attr("id", data.order);
+                link.attr("data-id", data.id);
+                link.find(".list-group-item-heading").html(data.title);
             }
         });
-        e.preventDefault();
     });
 </script>

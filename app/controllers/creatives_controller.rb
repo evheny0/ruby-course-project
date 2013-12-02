@@ -72,12 +72,16 @@ class CreativesController < ApplicationController
   end
 
   def reorder_chapters
-    chapter = @creative.chapters.sort_by{|e| e[:order]}
-    params[:order].each_char.with_index do |i, position|
-      chapter[i.to_i].order = position
-      chapter[i.to_i].save
+    new_order = params[:order].scan(/\d+/)
+    chapters = @creative.chapters
+
+    new_order.each.with_index do |i, position|
+      chapter = chapters.find_by(:id => i.to_i)
+      chapter.order = position
+      chapter.save
     end
     render :nothing => true
+
   end
 
   private

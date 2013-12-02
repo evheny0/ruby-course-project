@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   def index
     # includes
     @creatives = Creative.paginate(:page => params[:page], :per_page => 7)
-    @tags = Tag.all.sort_by{|e| -e[:ammount]}.take(10)
+    @tags = Tag.order(:ammount => :desc).take(10)
     @users = User.all
   end
 

@@ -21,6 +21,7 @@
   </div>
   <div class="actions">
     <%= f.submit "Save", :class => "btn btn-primary btn-block"  %>
+    <%= link_to "Delete", [@creative, @chapter], method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 <% end %>
 
@@ -36,7 +37,9 @@
                 link = $(".active");
                 link.attr("id", data.order);
                 link.attr("data-id", data.id);
-                link.find(".list-group-item-heading").html(data.title);
+                children = link.find(".list-group-item-heading").children();
+                link.find(".list-group-item-heading").text(data.title);
+                link.find(".list-group-item-heading").append(children);
             }
         });
     });

@@ -31,6 +31,7 @@
                 <a id=<%= chapter.order %> class="list-group-item item" data-id=<%= chapter.id %>>
                     <h4 class="list-group-item-heading">
                         <%= chapter.title %>
+                        <button class="btn btn-danger btn-xs pull-right">del</button>
                     </h4>
                 </a>
             <% end %>
@@ -54,21 +55,39 @@
     };
 
     (function() {
-        newItem = "<a class='list-group-item item active'><h4 class='list-group-item-heading'>New</h4></a>";
+        newItem = "<a class='list-group-item item active'><h4 class='list-group-item-heading'>New<button class='btn btn-danger btn-xs pull-right'>del</button></h4></a>";
         creativeUrl = "/creatives/<%= @creative.id %>/reorder_chapters";
-        chapterEditUrl = "/creatives/<%= @creative.id %>/chapters/";
+        chapterUrl = "/creatives/<%= @creative.id %>/chapters/";
         creativeEditUrl = "/creatives/<%= @creative.id %>/edit.json";
         $("#chapters").sortable({ cursor: "move" });
         var sorted = $("#chapters").sortable("serialize");
         
         $("#chapters").on("sortupdate", function() {
-            var order = $("#chapters").sortable("toArray");
+            var order = $("#chapters").sortable("toArray", {attribute: 'data-id'});
             $.ajax({
-                url: creativeUrl + "/?order=" + order.join(""),
+                url: creativeUrl + "/?order=" + order,
             }).done(showNotification("Updated"));
             $("#chapters").find("a").each(function(i) {
                 $(this).attr("id", i);
             });
+        });
+
+        $(".btn-danger").click(function() {
+            parent = $(this).parent().parent();
+            var id = parseInt(parent.attr("data-id"));
+            if (id) {
+                $.ajax({
+                    type: "DELETE",
+                    url: chapterUrl + id,
+                }).done(function() {
+                    showNotification("Deleted");
+                    $(".well").load(creativeEditUrl);
+                    parent.remove();
+                });
+            } else {
+                showNotification("Deleted");
+                parent.remove();
+            };
         });
 
         $(".item").click(function() {
@@ -78,14 +97,14 @@
                 $(".well").load(creativeEditUrl);
             } else {
                 var id = parseInt($(this).attr("data-id"));
-                $(".well").load(chapterEditUrl + id + "/edit.json");
+                $(".well").load(chapterUrl + id + "/edit.json");
             }
         });
 
         $(".add").click(function() {
             $(".item").removeClass('active');
             $("#chapters").append(newItem);
-            $(".well").load(chapterEditUrl + "/new.json");
+            $(".well").load(chapterUrl + "/new.json");
         });
     })();
 

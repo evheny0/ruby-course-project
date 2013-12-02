@@ -28,7 +28,7 @@
                 <button class="btn btn-default btn-sm">Update</button>
             </td>
             <td>
-                <button class="btn btn-danger btn-sm">Delete</button>
+                <a href=<%= "/user/" + user.id.to_s + "/delete" %> class="btn btn-danger btn-sm">Delete</a>
             </td>
         </tr>
         <% end %>

@@ -11,7 +11,7 @@ RubyCourseProject::Application.routes.draw do
 
   root 'home#index'
 
-  get 'search/' => 'search#index'
+  get 'search/tag/' => 'search#tag'
   get 'search/text/' => 'search#text'
 
   get 'vote/:id' => 'vote#change_vote', as: :vote

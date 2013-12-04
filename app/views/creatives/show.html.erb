@@ -6,6 +6,7 @@
     </div>
 <% end %>
 
+<% cache([:creative, :show, params[:id]], skip_digest: true) do %>
 <div class="creative">
     <div class="page-header">
         <h1>
@@ -30,7 +31,7 @@
         <%= link_to @creative.user.username, "/user/" + @creative.user.id.to_s %>
         <span class="glyphicon glyphicon-tags"></span>
         <% @creative.tags.each do |tag| %>
-            <%= link_to tag.value, search_path + "/?q=" + tag.value %>
+            <%= link_to tag.value, search_tag_path + "/?q=" + tag.value %>
         <% end %>
         <span id=<%= @creative.id %> class="vote-button btn btn-default btn-xs pull-right">
             <span class="glyphicon glyphicon-thumbs-up"></span>
@@ -39,3 +40,4 @@
     </div>
 
 </div>
+<% end %>

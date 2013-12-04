@@ -64,6 +64,9 @@ gem 'redcarpet'
 # use for full text search
 gem 'thinking-sphinx'
 
+# use for cache storage
+gem 'dalli'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

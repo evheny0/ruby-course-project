@@ -20,7 +20,7 @@
     <ul id="get" class="nav nav-pills">
         <% @tags.each do |tag| %>
             <li>
-                <a href=<%= search_path + "?q=" + tag.value %>>
+                <a href=<%= search_tag_path + "?q=" + tag.value %>>
                     <span class="glyphicon glyphicon-tag"></span>
                     <span id="value" value=<%= tag.ammount %>><%= tag.value %></span>
                 </a>

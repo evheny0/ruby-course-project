@@ -1,3 +1,6 @@
+<% if @creatives.length == 0 %>
+<h3>Nothing found :(</h3>
+<% else %>
 <% @creatives.each do |creative| %>
     <div class="creative">
         <h2 class="text-center"><%= link_to creative.title, creative %><small></small></h2>
@@ -10,7 +13,7 @@
             <%= link_to creative.user.username, "/user/" + creative.user.id.to_s %>
             <span class="glyphicon glyphicon-tags"></span>
             <% creative.tags.each do |tag| %>
-                <%= link_to tag.value, search_path + "/?q=" + tag.value %>
+                <%= link_to tag.value, search_tag_path + "/?q=" + tag.value %>
             <% end %>
             <% if user_signed_in? && !creative.votes.where(:user_id => current_user.id).last %>
                 <span id=<%= creative.id %> class="vote-button btn btn-default btn-xs pull-right">
@@ -30,3 +33,4 @@
 <% end %>
 
 <%= will_paginate @creatives, renderer: BootstrapPagination::Rails %>
+<% end %>

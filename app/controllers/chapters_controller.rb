@@ -1,6 +1,7 @@
 class ChaptersController < ApplicationController
   before_action :set_creative
   before_action :set_chapter, only: [:show, :edit, :update, :destroy]
+  after_action :reload_cache, only: [:create, :update, :destroy]
 
   # GET /chapters
   # GET /chapters.json
@@ -77,5 +78,9 @@ class ChaptersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def chapter_params
       params.require(:chapter).permit(:title, :content)
+    end
+
+    def reload_cache
+      expire_fragment([:creative, :show, @creative.id])
     end
 end

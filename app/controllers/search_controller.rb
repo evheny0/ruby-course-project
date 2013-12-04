@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
 
-  def index
+  def tag
     @param = params[:q]
     tag = Tag.where(:value => params[:q]).first
     @creatives = tag.creatives.paginate(:page => params[:page])

@@ -67,6 +67,8 @@ gem 'thinking-sphinx'
 # use for cache storage
 gem 'dalli'
 
+# use for tasks
+gem 'whenever'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

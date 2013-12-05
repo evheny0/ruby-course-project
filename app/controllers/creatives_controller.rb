@@ -31,7 +31,7 @@ class CreativesController < ApplicationController
   # POST /creatives
   # POST /creatives.json
   def create
-    @creative = Creative.new({ :user_id => current_user.id , :num_of_votes => 0 }.merge(creative_params))
+    @creative = Creative.new({ :user_id => current_user.id }.merge(creative_params))
     respond_to do |format|
       if @creative.save
         add_tags_to_creative

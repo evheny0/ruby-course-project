@@ -15,7 +15,7 @@ class Tag < ActiveRecord::Base
       tag.ammount += 1
       tag.save
     else
-      tag = new(:value => tag_value, :ammount => 1)
+      tag = new(:value => tag_value)
     end
     return tag
   end

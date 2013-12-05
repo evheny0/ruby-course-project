@@ -7,15 +7,15 @@
   voteUrl = "/vote/"
   refreshAfterLike = (data, parent_element) ->
     element = parent_element.children("#vote")
-    switch data.response
+    switch data.vote_is_set
       when "true"
         parent_element.removeClass "btn-default"
         parent_element.addClass "btn-primary"
-        element.html parseInt(element.text()) + 1
+        element.html data.vote_num
       when "false"
         parent_element.removeClass "btn-primary"
         parent_element.addClass "btn-default"
-        element.html parseInt(element.text()) - 1
+        element.html data.vote_num
 
   changeVote = ->
     element = $(this)
@@ -25,7 +25,9 @@
 
   addLike = (creativeId) ->
     $.ajax
-      url: voteUrl + creativeId
+      type: "POST"
+      url: voteUrl
+      data: { id: creativeId }
       dataType: "json"
 
 

@@ -1,13 +1,17 @@
 class SearchController < ApplicationController
 
   def tag
-    @param = params[:q]
-    tag = Tag.where(:value => params[:q]).first
-    @creatives = tag.creatives.paginate(:page => params[:page])
+    @tag_value = params[:q]
+    @creatives = get_creatives_by_tag
   end
 
   def text
-    @creatives = Creative.search(params[:q], :page => params[:page], :per_page => 7)
+    @creatives = Creative.search(params[:q], :page => params[:page])
   end
 
+  private
+    def get_creatives_by_tag
+      seeking_tag = Tag.find_by(:value => @tag_value)
+      seeking_tag.creatives.paginate(:page => params[:page]) if seeking_tag
+    end
 end

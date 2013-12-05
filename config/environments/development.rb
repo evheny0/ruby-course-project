@@ -13,6 +13,8 @@ RubyCourseProject::Application.configure do
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
+
+  # Caching
   config.action_controller.perform_caching = true
 
   # Don't care if the mailer can't send.

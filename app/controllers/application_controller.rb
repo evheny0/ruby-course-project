@@ -12,13 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_theme
-    if params[:theme] == "switch"
-        if !cookies[:theme] || (cookies[:theme] == "flatly")
-            cookies[:theme] = "cyborg"
-        else
-            cookies[:theme] = "flatly"
-        end
-    end
+    cookies[:theme] ||= "flatly"
   end
 
   protected

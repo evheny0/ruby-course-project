@@ -1,4 +1,4 @@
-<% if @creatives.length == 0 %>
+<% if !@creatives || @creatives.length == 0 %>
 <h3>Nothing found :(</h3>
 <% else %>
 <% @creatives.each do |creative| %>

@@ -1,6 +1,5 @@
 class CreativesController < ApplicationController
   before_action :set_creative, only: [:show, :edit, :update, :destroy, :reorder_chapters]
-  before_action :string_of_tags_to_array, only: [:create, :update]
   before_action :check_rights, only: [:edit, :update, :destroy, :reorder_chapters]
 
   # GET /creatives
@@ -82,16 +81,13 @@ class CreativesController < ApplicationController
       chapter.save
     end
     render :nothing => true
-
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_creative
       @creative = Creative.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def creative_params
       params.require(:creative).permit(:title, :description)
     end
@@ -102,30 +98,19 @@ class CreativesController < ApplicationController
 
     def string_of_tags_to_array
       string_tags = params[:tags]
-      @tags = string_tags.scan(/[A-Za-zа-яА-Я\d]+/)
+      return string_tags.scan(/[A-Za-zа-яА-Я\d]+/)
     end
 
     def add_tags_to_creative
-      @tags.each do |t|
-        tag = Tag.where(:value => t).last
-        if tag
-          tag.ammount += 1
-          tag.save
-          @creative.tags << tag
-        else
-          @creative.tags.create(:value => t, :ammount => 1)
-        end
+      string_of_tags_to_array.each do |string_tag|
+        tag = Tag.get_or_create(string_tag)
+        @creative.tags << tag
       end
     end
 
     def delete_tags_from_creative
       @creative.tags.to_a.each do |tag|
-        if tag.ammount == 1
-          tag.destroy
-        else
-          tag.ammount -= 1
-          tag.save
-        end
+        tag.decrease
         @creative.tags.delete(tag)
       end
     end

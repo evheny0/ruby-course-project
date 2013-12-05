@@ -5,7 +5,7 @@ RubyCourseProject::Application.routes.draw do
   end
 
   get "home/index"
-  get 'switch_theme/' => 'home#switch_theme'
+  post 'switch_theme/' => 'home#switch_theme'
 
   devise_for :users
 
@@ -14,13 +14,15 @@ RubyCourseProject::Application.routes.draw do
   get 'search/tag/' => 'search#tag'
   get 'search/text/' => 'search#text'
 
-  get 'vote/:id' => 'vote#change_vote', as: :vote
+  post 'vote/' => 'vote#change_vote', as: :vote
 
   get 'tags/start_with' => 'tags#start_with'
 
-  get 'user/:id' => 'user#show'
+  get 'user/:id' => 'user#show', as: :user
   get 'admin' => 'user#admin'
-  get 'user/:id/delete' => 'user#delete'
+  post 'user/:id' => 'user#update'
+  delete 'user/:id/delete' => 'user#delete'
+
   get 'creatives/:id/reorder_chapters' => 'creatives#reorder_chapters'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

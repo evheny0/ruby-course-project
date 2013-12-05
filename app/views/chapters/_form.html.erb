@@ -1,41 +1,46 @@
 <%= form_for [@chapter.creative, @chapter] do |f| %>
-  <% if @chapter.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@chapter.errors.count, "error") %> prohibited this chapter from being saved:</h2>
+    <% if @chapter.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@chapter.errors.count, "error") %> prohibited this chapter from being saved:</h2>
+            <ul>
+                <% @chapter.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
 
-      <ul>
-      <% @chapter.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, :class => "form-control" %>
     </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, :class => "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :content %>
-    <%= f.text_area :content, :class => "form-control", :rows => 10 %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Save", :class => "btn btn-primary btn-block"  %>
-  </div>
+    <div class="form-group">
+        <%= f.label :content %>
+        <%= f.text_area :content, :class => "form-control", :rows => 10 %>
+    </div>
+    <div class="actions">
+        <%= f.submit "Save", :class => "btn btn-primary btn-block"  %>
+    </div>
 <% end %>
 
 <script>
+    var isFirstKeydown = false;
+
     ($(".well").find('form')).on("submit", function(e) {
         e.preventDefault();
         sendForm(refreshAfterSaving);
     });
 
-    setInterval("autosave()", 3000);
+    ($(".well").find('form')).keydown(function() {
+        autosave();
+    });
+
+    
 
     var refreshAfterSaving = function(data) {
         showNotification("Saved");
         refreshTitleInList(data.title, data.order, data.id);
-    }
+    };
 
     var refreshTitleInList = function(title, order, id) {
         link = $(".active");
@@ -44,20 +49,21 @@
         children = link.find(".list-group-item-heading").children();
         link.find(".list-group-item-heading").text(title);
         link.find(".list-group-item-heading").append(children);
-    }
+    };
 
     var sendForm = function(func) {
         $.ajax({
             type: 'post',
             url: ($(".well").find('form')).attr('action') + ".json",
             data: ($(".well").find('form')).serialize(),
-            success: function (data) {
-                func(data);
-            }
+            success: func
         });
-    }
+    };
 
     var autosave = function() {
-        sendForm(null);
-    }
+        if (!isFirstKeydown) {
+            setInterval("sendForm(null)", 3000);
+            isFirstKeydown = true;
+        }
+    };
 </script>

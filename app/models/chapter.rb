@@ -1,3 +1,3 @@
 class Chapter < ActiveRecord::Base
-  belongs_to :creative
+  belongs_to :creative, :touch => true
 end

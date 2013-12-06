@@ -4,4 +4,17 @@ class Creative < ActiveRecord::Base
   has_many :chapters, dependent: :destroy
   has_many :votes, dependent: :destroy
   validates :title, :description, presence: true
+  after_save :increase_user_amount
+  before_destroy :decrease_user_amount
+
+  private 
+    def increase_user_amount
+      user.creatives_num += 1
+      user.save
+    end
+
+    def decrease_user_amount
+      user.creatives_num -= 1
+      user.save
+    end
 end

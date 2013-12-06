@@ -1,6 +1,7 @@
 class CreativesController < ApplicationController
   before_action :set_creative, only: [:show, :edit, :update, :destroy, :reorder_chapters]
   before_action :check_rights, only: [:edit, :update, :destroy, :reorder_chapters]
+  before_action :reload_cache, only: [:update, :destroy, :reorder_chapters]
 
   # GET /creatives
   # GET /creatives.json
@@ -74,12 +75,7 @@ class CreativesController < ApplicationController
   def reorder_chapters
     new_order = params[:order].scan(/\d+/)
     chapters = @creative.chapters
-
-    new_order.each.with_index do |i, position|
-      chapter = chapters.find_by(:id => i.to_i)
-      chapter.order = position
-      chapter.save
-    end
+    set_new_order(chapters, new_order)
     render :nothing => true
   end
 
@@ -114,4 +110,17 @@ class CreativesController < ApplicationController
         @creative.tags.delete(tag)
       end
     end
+
+    def set_new_order(chapters, new_order)
+      new_order.each.with_index do |i, position|
+        chapter = chapters.find_by(:id => i.to_i)
+        chapter.order = position
+        chapter.save
+      end
+    end
+
+    def reload_cache
+      expire_fragment([:creative, :show, @creative.id])
+    end
+
 end

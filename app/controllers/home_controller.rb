@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
   def index
-    # includes
-    @creatives = Creative.paginate(:page => params[:page], :per_page => 7)
+    @creatives = Creative.order(:num_of_votes => :desc).paginate(:page => params[:page], :per_page => 7)
     @tags = Tag.most_popular
     @users = User.most_popular
   end

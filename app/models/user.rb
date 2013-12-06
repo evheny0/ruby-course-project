@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
   has_many :creatives, dependent: :destroy
 
   def self.most_popular
-    take(10)
+    order(:creatives_num => :desc).take(10)
   end
 end

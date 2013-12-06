@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h1>Creatives by <%= @user.username %></h1>
+    <h1><%= t("user.creatives_by") + @user.username %></h1>
 </div>
 
 <%= render "shared/creatives" %>

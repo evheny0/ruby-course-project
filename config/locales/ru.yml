@@ -5,10 +5,52 @@ ru:
     write_new: "Создать креатив"
     all_creatives: "Все мои креативы"
     admin_panel: "Панель админа"
+    sign_out: "Выйти"
+
+    theme: "Сменить тему"
+    language: "Язык"
+    language_en: "English"
+    language_ru: "Русский"
+
   root:
     tags_cloud: "Облако тегов"
     pop_creatives: "Популярные креативы"
     pop_users: "Популярные юзеры"
-  home:
-    index:
-       hello: "Привет"
+
+  creative:
+    show: "Показать"
+    edit: "Редактировать"
+    new: "Новый креатив" 
+    destroy: "Удалить"
+    title: "Заголовок"
+    description: "Описание"
+    content: "Текст"
+    tag: "Теги"
+    enter_tags: "Введите теги"
+    submit: "Отправить"
+    chapters: "Главы:"
+    edit_header: "Редактирование креатива"
+    creative_info: "Описание"
+    add_new: "Добавить новую"
+    login: "Логин"
+    register: "Регистрация"
+
+    new_title: ""
+    new_content: ""
+
+  chapter:
+    title: "Заголовок"
+    text: "Текст"
+
+  user:
+    admin_panel: "Панель админа"
+    username: "Логин"
+    is_admin: "Админ?"
+    is_confirmed: "Подтвержден?"
+    update: "Обновить"
+    delete: "Удалить"
+    creatives_by: "Креативы пользователя "
+
+  search:
+    creatives_by_tag: "Креативы по тегу "
+

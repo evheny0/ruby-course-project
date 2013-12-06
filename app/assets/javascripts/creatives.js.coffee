@@ -46,7 +46,7 @@ deleteItem = ->
   ).done deleteFromList(parent)
 
 loadFormForItem = (id) ->
-  unless id
+  if id
     $(".well").load chapterUrl + id + "/edit.json"
   else
     $(".well").load creativeEditUrl
@@ -75,7 +75,8 @@ createNewItem = ->
     url: chapterUrl
     data:
       chapter:
-        title: "New"
+        title: "New chapter"
+        content: "Enter text"
 
     success: appendNewItem
 

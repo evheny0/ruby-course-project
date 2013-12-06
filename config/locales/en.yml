@@ -54,4 +54,21 @@ en:
     login: "Login"
     register: "Register"
 
-  hello: "Hello world"
+    new_title: "New chapter"
+    new_content: "Enter text"
+
+  chapter:
+    title: "Title"
+    text: "Content"
+
+  user:
+    admin_panel: "Admin panel"
+    username: "Username"
+    is_admin: "Is admin"
+    is_confirmed: "Is confirmed"
+    update: "Update"
+    delete: "Delete"
+    creatives_by: "Creatives by "
+
+  search:
+    creatives_by_tag: "Creatives by tag "

@@ -64,3 +64,14 @@ ru:
         subject: "Инструкции по восстановлению пароля"
       unlock_instructions:
         subject: "Инструкции по разблокировке учётной записи"
+    forms:
+      edit: "Редактирование"
+      cancel_account: "Удалить аккаунт"
+      unhappy: "Что-то не так?"
+      register: "Регистрация"
+      login: "Вход"
+      username: "Логин"
+      email: "Почта"
+      password: "Пароль"
+      password_confirm: "Подтверждение пароля"
+

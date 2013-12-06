@@ -15,6 +15,9 @@
             <li>
                 <%= link_to t("navigation.all_creatives"), "/user/" + (current_user.id).to_s %>
             </li>
+            <li>
+                <%= link_to t("navigation.edit_profile"), edit_user_registration_path %>
+            </li>
             <li class="divider"></li>
             <% if can? :manage, nil %>
                 <li>
